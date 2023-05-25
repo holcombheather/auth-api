@@ -30,10 +30,14 @@ async function handleGetAll(req, res) {
   res.status(200).json(allRecords);
 }
 
-async function handleGetOne(req, res) {
-  const id = req.params.id;
-  let theRecord = await req.model.get(id);
-  res.status(200).json(theRecord);
+async function handleGetOne(req, res, next) {
+  try {
+    const id = req.params.id;
+    let theRecord = await req.model.get(id);
+    res.status(200).json(theRecord);
+  } catch(e){
+    next(e.message || e);
+  }
 }
 
 async function handleCreate(req, res) {
