@@ -3,7 +3,8 @@
 const express = require('express');
 const authRouter = express.Router();
 
-const { users } = require('./models');
+// this was updated to import from the root level models/index.js
+const { users } = require('../models/index');
 const basicAuth = require('./middleware/basic.js');
 const bearerAuth = require('./middleware/bearer.js');
 const permissions = require('./middleware/acl.js');
